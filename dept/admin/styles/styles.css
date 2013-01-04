@@ -1,0 +1,171 @@
+body{
+background:#DBE1E3;
+
+/*background:-moz-linear-gradient(top,#DBE1E3 , #fff)  no-repeat center center fixed;*/
+background:-moz-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+background:-webkit-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+
+}
+
+.welcomeContainer{
+position:absolute;
+font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;	
+top:10px;
+left:2.5%;
+width: 95%; /* remember to set a width */
+height:90%;
+z-index:2;
+}
+
+.loginForm{
+position:absolute;
+top:30%;
+left:25%;
+width:50%;
+border:1px solid #990000;
+}
+.form{
+position:absolute;
+top:10%;
+left:12.5%;
+width:75%;
+border:1px solid #990000;
+}
+
+/*place the log out link*/
+.logout{
+position: relative;
+width: 250px;
+bottom: 20px;
+right:13px;
+float:right;
+text-align:right;
+z-index:6;
+
+}
+.logout td ,a{
+color:#FFF;
+font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;
+}
+
+.titleContainer {
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	width: 100%;
+	height: 8%;
+	font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;	
+	background: #990000 ;
+/*#990000 #339900 ##DD4814 #660066*/
+	color: #fff;
+	overflow:hidden;
+}
+.titleContainer h1{
+font-size:200%;
+
+}
+
+.titleContent{
+margin-left:15px;
+}
+
+#title{
+color:#fff;
+font-size:200%;
+font-weight:light;
+}
+
+.catogory table{
+position:absolute;
+font-size:130%;
+text-align:right;
+right:15px;
+top:0px;
+color:#fff;
+}
+
+.bodyContainer{
+position:absolute;
+top:10px;
+left:15px;
+width: 80%; /* remember to set a width */
+height:90%;
+z-index:1;
+font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;
+}
+
+.textContent{
+position:relative;
+z-index:5;
+}
+
+.textOverlay{
+position: absolute;
+/*background:url('paper.jpg');*/
+background:-moz-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+background:-webkit-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+border:none;
+top: 0; /* These positions makes sure that the overlay */
+bottom: 0;  /* will cover the entire parent */
+left: 0;
+width: 100%; 
+border:solid #ddd 1px;
+}
+
+
+.sidebarContainer {
+position:absolute;
+top:10%;
+right:15px;
+width: 15%; /* remember to set a width */
+height: 90%;
+text-align:center;
+z-index:1;
+}
+
+.sidebarComponentContainer{
+position:relative;
+width:95%;
+left:2.5%;
+margin-top:5%;
+background: -moz-linear-gradient(top, #e0e0e0 , #fff)  no-repeat center center fixed;
+background:-webkit-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;	
+font-weight:light;
+border:1px #ddd solid;
+}
+
+.sidebarComponentTitle{
+position:relative;
+background:#990000;
+margin:1px;
+height: 25px;
+color:#fff;
+border:1px solid;
+}
+
+.sidebarComponentBody{
+position:relative;
+padding-top:5px;
+padding-bottom:5px;
+margin-left:5px;
+text-align:left;
+}
+.sidebarComponentBody a{
+text-align: right;
+color:#000;
+font-size:15;
+
+}
+label.error {font-family: Verdana; font-size: 11px; line-height: 14px; width: 150px; display: block; color: red; padding-left: 10px;}
+
+
+
+table.topalign td { vertical-align: top } 
+
+.tablebox{
+	position:absolute;
+	top:5%;
+	left:10%;
+	width:80%;
+}

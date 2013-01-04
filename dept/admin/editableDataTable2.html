@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+		<head>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+		<title>DataTables (table plug-in for jQuery) Column Filter Add-on</title>
+		<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/media/images/favicon.ico">
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+		<style type="text/css" media="screen">
+@import "plugins/ui/smoothness/jquery-ui-1.9.1.custom.css";
+ @import "plugins/datatableeditable/demo_table_jui.css";
+/*
+			 * Override styles needed due to the mix of three different CSS sources! For proper examples
+			 * please see the themes example in the 'Examples' section of this site
+			 */
+			.dataTables_info {
+	padding-top: 0;
+}
+.dataTables_paginate {
+	padding-top: 0;
+}
+.css_right {
+	float: right;
+}
+#example_wrapper .fg-toolbar {
+	font-size: 0.8em
+}
+#theme_links span {
+	float: left;
+	padding: 2px 10px;
+}
+.addNewForm {
+	font-size:13px
+}
+table.topalign td { vertical-align: top } 
+.radioSpilters{
+	width:50%;
+	float:left;
+}
+label.error {font-family: Verdana; font-size: 11px; line-height: 14px; width: 150px; display: block; color: red; padding-left: 10px;}
+
+</style>
+		<script src="plugins/jquery.js" type="text/javascript"></script>
+		<script src="plugins/datatableeditable/jquery.dataTables.min.js" type="text/javascript"></script>
+		<script src="plugins/datatableeditable/jquery.dataTables.editable.js" type="text/javascript"></script>
+		<script src="plugins/datatableeditable/jquery.jeditable.js" type="text/javascript" ></script>
+		<script src="plugins/ui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="plugins/timepicker/jquery.timePicker.js"></script>
+		<script type='text/javascript' src="plugins/jquery.validate.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready( function () {
+				var id = -1;//simulation of id
+
+
+				$("#show_on_container").hide();//Hide show_on text box at the initial
+				$("#hide_after_container").hide();//Hide hide_after text box at the initial				
+				$('input:radio').click(function() { // When click on show on radio
+						if ($(this).val()=="show_now")
+							$("#show_on_container").hide();
+						else if($(this).val()=="show_later")
+							$("#show_on_container").show();
+						else if($(this).val()=="hide_never")
+							$("#hide_after_container").hide();
+						else if($(this).val()=="hide_after")
+							$("#hide_after_container").show();
+    			});
+				
+				$( "#show_on" ).datepicker({
+					dateFormat:"yy-mm-dd",
+				});
+				$( "#hide_after" ).datepicker({
+					dateFormat:"yy-mm-dd",
+				});
+				
+			  $("#formAddNewRow").validate({
+				rules: {
+					show_on:{
+						required: "[value='show_later']:checked",
+						dateISO: true
+				
+					},
+					hide_after:{
+						required: "[value='hide_after']:checked",
+						dateISO: true
+				
+					},					
+				  	upload_by: "required",// simple rule, converted to {required:true}
+					time_to_display:{
+							required:true,
+							number: true,
+							max:30
+						},
+					caption: {
+							required: true
+						}
+				},
+				messages: {
+				  caption: "Please enter a caption."
+				}
+			  });
+
+				$('#example').dataTable({ bJQueryUI: true,
+
+							"sPaginationType": "full_numbers",
+							"bProcessing": true,
+        					"bServerSide": true,
+        					"sAjaxSource": "dataTable.php"
+					}).makeEditable({
+										sUpdateURL: function(value, settings)
+										{
+                             							return(value); //Simulation of server-side response using a callback function
+										},
+                             			sAddURL: "AddData.php",
+                             			sAddHttpMethod: "POST",
+                                    	sDeleteHttpMethod: "GET",
+										sDeleteURL: "DeleteData.php",
+										"aoColumns": [
+												{cssclass: "required"},{},
+												{
+													indicator: 'Saving platforms...',
+													tooltip: 'Click to edit platforms',
+													type: 'textarea',
+													submit:'Save changes'
+												},
+												{
+													indicator: 'Saving Engine Version...',
+													tooltip: 'Click to select engine version',
+													loadtext: 'loading...',
+													type: 'select',
+													onblur: 'cancel',
+													submit: 'Ok',
+													loadurl: 'EngineVersionList.php',
+													loadtype: 'GET'
+												},
+												{
+													indicator: 'Saving CSS Grade...',
+													tooltip: 'Click to select CSS Grade',
+													loadtext: 'loading...',
+													type: 'select',
+													onblur: 'submit',
+													data: "{'':'Please select...', 'A':'A','B':'B','C':'C'}"
+												}
+											],
+										oAddNewRowButtonOptions: {	label: "Add...",
+																	icons: {primary:'ui-icon-plus'} 
+											},
+										oDeleteRowButtonOptions: {	label: "Remove", 
+																	icons: {primary:'ui-icon-trash'}
+											},
+
+										oAddNewRowFormOptions: { 	
+                                                    				title: 'Add a new browser',
+																	show: "blind",
+																	hide: "fade",
+                                                    				modal: true,
+																	minWidth: 400,
+																	resizable: false
+											},
+										sAddDeleteToolbarSelector: ".dataTables_length"								
+
+											});
+				
+			} );
+		</script>
+		</head>
+
+		<body >
+<h3>Example</h3>
+<div class="full_width">
+          <form id="formAddNewRow" action="#"  title="Add a new Notice" class="addNewForm" style="width:100%" enctype="multipart/form-data">
+    <table width="100%" cellpadding="4" cellspacing="1" >
+              <tr>
+        <td align="center"><label id="lblAddError" style="display:none" class="error"></label><input type="hidden" name="requestPage" value="<?php echo $_SERVER['PHP_SELF']; ?>">
+                  <input name="uploadType" value="image" type="radio" checked="true">
+                  Image Document Upload
+          </input>
+                  &nbsp
+                  <input name="uploadType" value="video" type="radio">
+                  Video Upload
+                  </input></td>
+      </tr>
+              <tr>
+        <td><hr/></td>
+      </tr>
+              <tr>
+        <td align="center"><input type="file" name="file" id="file" /></td>
+      </tr>
+              <tr>
+        <td><hr/></td>
+      </tr>
+            </table>
+    <table align="center" width="80%" cellpadding="4" cellspacing="1" class="topalign" >
+              <tr>
+        <td width="108px">Upload by</td>
+        <td>:</td>
+        <td><input type="text" name="upload_by" id="upload_by" style="width:100%" rel="2" required /></td>
+      </tr>
+              <tr>
+        <td >Show</td>
+        <td >:</td>
+        <td><div class="radioSpilters">
+            <input  type="radio" id="show_on_radio" name="show_on_radio" value="show_now" checked validate="required:true">Now</input>
+          </div>
+                  <div class="radioSpilters">
+            <input  type="radio" id="show_on_radio"name="show_on_radio"  value="show_later">Later</input>
+          </div>
+                  <div id="show_on_container">
+            <input type="text" name="show_on" id="show_on" style="width:100%" />
+          </div></td>
+      </tr>
+              <tr>
+        <td>Hide</td>
+        <td >:</td>
+        <td><div class="radioSpilters">
+            <input  type="radio" id="hide_after_radio" name="hide_after_radio" value="hide_never" checked validate="required:true">Never</input>
+          </div>
+                  <div class="radioSpilters">
+            <input  type="radio" id="hide_after_radio" name="hide_after_radio"  value="hide_after">After</input>
+          </div>
+                  <div id="hide_after_container">
+            <input type="text" name="hide_after" id="hide_after" style="width:100%" />
+          </div></td>
+      </tr>
+              <tr>
+        <td>Time to show (seconds)</td>
+        <td>:</td>
+        <td><input type="text" name="time_to_display" id="time_to_display" style="width:100%" rel="3"/></td>
+      </tr>
+              <tr>
+        <td>Caption</td>
+        <td>:</td>
+        <td><input type="text" name="caption" id="caption" style="width:100%" rel="1" required /></td>
+      </tr>
+              <tr>
+        <td>Show</td>
+        <td>:</td>
+        <td><input type="checkbox" name="display" id="display" checked="true" rel="4"/></td>
+      </tr>
+            </table>
+  </form>
+          <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+    <thead>
+              <tr>
+        <th>id</th>
+        <th>caption</th>
+        <th>notice_by</th>
+        <th>type</th>
+        <th>time_to_display</th>
+        <th>display</th>
+      </tr>
+            </thead>
+    <tfoot>
+              <tr>
+        <th>id</th>
+        <th>caption</th>
+        <th>notice_by</th>
+        <th>type</th>
+        <th>time_to_display</th>
+        <th>display</th>
+      </tr>
+            </tfoot>
+    <tbody>
+
+            </tbody>
+  </table>
+        </div>
+</body>
+</html>

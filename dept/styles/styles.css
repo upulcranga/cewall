@@ -1,0 +1,251 @@
+body{
+background:#DBE1E3;
+
+/*background:-moz-linear-gradient(top,#DBE1E3 , #fff)  no-repeat center center fixed;*/
+background:-moz-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+background:-webkit-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+
+}
+
+.welcomeContainer{
+position:absolute;
+top:10px;
+left:2.5%;
+width: 95%; /* remember to set a width */
+height:90%;
+z-index:2;
+}
+
+.titleContainer {
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	width: 100%;
+	height: 8%;
+	font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;	
+	background: #FF9900 ;
+/*#FF9900 #339900 ##DD4814 #660066*/
+	color: #fff;
+	overflow:hidden;
+}
+.titleContainer h1{
+font-size:200%;
+
+}
+
+.titleContent{
+margin-left:15px;
+}
+
+#title{
+color:#fff;
+font-size:200%;
+font-weight:light;
+}
+
+.catogory table{
+position:absolute;
+font-size:130%;
+text-align:right;
+right:15px;
+top:0px;
+color:#fff;
+}
+
+.bodyContainer{
+position:absolute;
+top:10px;
+left:15px;
+width: 80%; /* remember to set a width */
+height:90%;
+z-index:2;
+}
+
+.textContent{
+position:relative;
+
+z-index:5;
+}
+
+.textOverlay{
+position: absolute;
+/*background:url('paper.jpg');*/
+background:-moz-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+background:-webkit-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+border:none;
+top: 0; /* These positions makes sure that the overlay */
+bottom: 0;  /* will cover the entire parent */
+left: 0;
+width: 100%; 
+border:solid #ddd 1px;
+}
+
+.overlay{
+position: absolute;
+top: 0; /* These positions makes sure that the overlay */
+bottom: 0;  /* will cover the entire parent */
+left: 0;
+width: 100%;
+background: -moz-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+background:-webkit-linear-gradient(top,#000 , #fff)  no-repeat center center fixed;
+border-radius:10px; 
+-moz-border-radius:10px; 
+border:solid 1px;
+opacity: 0.05;
+}
+
+.box { width:25%; height:100%; float:left; list-style-type: none;}
+.box2 { width:25%; height:100%; float:left; list-style-type: none;}
+
+#wrapper { width:100%; height:98%; position:absolute; top:1%; left:0; overflow:hidden; }
+#wrapper2	{ width:100%; height:98%; position:absolute; top:99%; left:0; overflow:hidden; }
+  
+#mask	#mask2	{ width:400%; height:100%; }
+
+.inner		{ 
+width:98%;
+height:100%;
+background:rgba(255, 255, 255, 0.1);
+align:center;
+margin:auto;
+margin-top:0;
+/*padding:15px;*/
+top:0px;
+position:relative; }
+
+.inner img{
+height:100%;
+}
+
+.sidebarContainer {
+position:absolute;
+top:10px;
+right:15px;
+width: 15%; /* remember to set a width */
+height: 90%;
+text-align:center;
+z-index:1;
+}
+
+.captionContainer{
+/*background: none repeat scroll 0 0 black;
+    opacity: 0.25;
+    position: absolute;
+	width:100%;
+	height:10%; 
+border-radius:10px; 
+-moz-border-radius:10px; 
+	z-index:5;
+  	color:white;
+	bottom:0px;
+	vertical-align:center;
+	text-align:center;
+	padding:10px;*/
+position:absolute;
+bottom:1%;
+left:0%;
+width: 100%; /* remember to set a width */
+height:60px;
+z-index:6;
+font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;
+font-weight:light;	
+/*border:1px #ddd solid;	*/
+}
+
+.captionOverlay{
+position: absolute;
+top: 0; /* These positions makes sure that the overlay */
+bottom: 0;  /* will cover the entire parent */
+left: 0;
+width: 100%;
+/*background: -moz-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+background:-webkit-linear-gradient(top,#000 , #fff)  no-repeat center center fixed;
+border:solid #ddd 1px;*/
+opacity: 0.50;
+background:#000;
+}
+
+.captionNumber{
+position: relative;
+background:#FF9900;
+width:60px;
+height:100%;
+margin-left:1px;
+float:left;
+font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;
+font-weight:lighter;	
+font-size:200%;
+color:#fff;
+}
+
+.navigationNumber{
+position:relative;
+width:20px;
+height:20px;
+background:#bbb;
+color:#fff;
+text-align:center;
+}
+
+.captionContent{
+position:relative;
+z-index:7;
+color:#fff;
+padding:10px;
+font-size:110%;
+}
+
+/* TESTING */
+.sidebarComponentContainer{
+position:relative;
+width:95%;
+left:2.5%;
+margin-top:10px;
+background: -moz-linear-gradient(top, #e0e0e0 , #fff)  no-repeat center center fixed;
+background:-webkit-linear-gradient(top,#e0e0e0 , #fff)  no-repeat center center fixed;
+font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;	
+font-weight:light;
+border:1px #ddd solid;
+}
+
+.sidebarComponentTitle{
+position:relative;
+background:#FF9900;
+margin:1px;
+height: 25px;
+color:#fff;
+border:1px solid;
+}
+
+.sidebarComponentBody{
+position:relative;
+padding-top:2px;
+padding-bottom:2px;
+}
+
+.catogoryPage{
+width:100%;
+height:100%;
+background:#fff;
+font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;	
+font-weight:lighter;
+font-size:600%;
+color:#FF9900;
+}
+
+.labTable{
+position:relative;
+font-family: "Ubuntu Light","Myriad Pro Light", Times, sans-serif;	
+font-weight:lighter;
+text-align:center;
+font-size:150%;
+}
+
+.oddRow{
+background:#EEDDEE;
+color:#000;
+}
+.evenRow{
+background:#d99fb8;
+color:#000;
+}

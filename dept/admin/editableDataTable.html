@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>DataTables (table plug-in for jQuery) Column Filter Add-on</title>
+<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/media/images/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+<style type="text/css" media="screen">
+ @import "plugins/ui/smoothness/jquery-ui-1.9.1.custom.css";
+  @import "plugins/datatableeditable/demo_table_jui.css";
+/*
+			 * Override styles needed due to the mix of three different CSS sources! For proper examples
+			 * please see the themes example in the 'Examples' section of this site
+			 */
+			.dataTables_info {
+	padding-top: 0;
+}
+.dataTables_paginate {
+	padding-top: 0;
+}
+.css_right {
+	float: right;
+}
+#example_wrapper .fg-toolbar {
+	font-size: 0.8em
+}
+#theme_links span {
+	float: left;
+	padding: 2px 10px;
+}
+
+</style>
+<script src="plugins/jquery.js" type="text/javascript"></script>
+<script src="plugins/datatableeditable/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="plugins/datatableeditable/jquery.dataTables.editable.js" type="text/javascript"></script>
+<script src="plugins/datatableeditable/jquery.jeditable.js" type="text/javascript" ></script>
+<script src="plugins/ui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" charset="utf-8">
+			$(document).ready( function () {
+				var id = -1;//simulation of id
+				
+				$('#example').dataTable({ bJQueryUI: true,
+
+							"sPaginationType": "full_numbers",
+							"bProcessing": true,
+        					"bServerSide": true,
+        					"sAjaxSource": "dataTable.php"
+					}).makeEditable({
+										sUpdateURL: function(value, settings)
+										{
+                             							return(value); //Simulation of server-side response using a callback function
+										},
+                             			sAddURL: "AddData.php",
+                             			sAddHttpMethod: "GET",
+                                    	sDeleteHttpMethod: "GET",
+										sDeleteURL: "DeleteData.php",
+										"aoColumns": [
+												{cssclass: "required"},{},
+												{
+													indicator: 'Saving platforms...',
+													tooltip: 'Click to edit platforms',
+													type: 'textarea',
+													submit:'Save changes'
+												},
+												{
+													indicator: 'Saving Engine Version...',
+													tooltip: 'Click to select engine version',
+													loadtext: 'loading...',
+													type: 'select',
+													onblur: 'cancel',
+													submit: 'Ok',
+													loadurl: 'EngineVersionList.php',
+													loadtype: 'GET'
+												},
+												{
+													indicator: 'Saving CSS Grade...',
+													tooltip: 'Click to select CSS Grade',
+													loadtext: 'loading...',
+													type: 'select',
+													onblur: 'submit',
+													data: "{'':'Please select...', 'A':'A','B':'B','C':'C'}"
+												}
+											],
+										oAddNewRowButtonOptions: {	label: "Add...",
+																	icons: {primary:'ui-icon-plus'} 
+											},
+										oDeleteRowButtonOptions: {	label: "Remove", 
+																	icons: {primary:'ui-icon-trash'}
+											},
+
+										oAddNewRowFormOptions: { 	
+                                                    				title: 'Add a new browser',
+																	show: "blind",
+																	hide: "explode",
+                                                    				modal: true
+											},
+										sAddDeleteToolbarSelector: ".dataTables_length"								
+
+											});
+				
+			} );
+		</script>
+
+</head>
+
+<body >
+    <h3>Example</h3>
+    <div class="full_width">
+      <form id="formAddNewRow" action="#" title="Add a new browser" style="width:600px;min-width:600px">
+        <label for="engine">Rendering engine</label>
+        <br />
+        <input type="text" name="engine" id="name" class="required" rel="0" />
+        <br />
+        <label for="browser">Browser</label>
+        <br />
+        <input type="text" name="browser" id="browser" rel="1" />
+        <input type="hidden" name="platform" rel="2" />
+        <br />
+        <label for="version">Engine version</label>
+        <br />
+        <select name="version" id="version" rel="3">
+          <option>1.5</option>
+          <option>1.7</option>
+          <option>1.89</option>
+        </select>
+        <br />
+        <label for="grade">CSS grade</label>
+        <br />
+        <input type="radio" name="grade" value="A" rel="4">
+        First<br>
+        <input type="radio" name="grade" value="B" rel="4">
+        Second<br>
+        <input type="radio" name="grade" value="C" checked rel="4">
+        Third <br />
+      </form>
+      <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>caption</th>
+            <th>notice_by</th>
+            <th>type</th>
+            <th>time_to_display</th>
+            <th>display</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>id</th>
+            <th>caption</th>
+            <th>notice_by</th>
+            <th>type</th>
+            <th>time_to_display</th>
+            <th>display</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr class="odd_gradeX" id="2">
+            <td class="read_only"> A Trident(read only cell)</td>
+            <td>Internet Explorer 4.0</td>
+            <td>Win 95+</td>
+            <td class="center">4</td>
+            <td class="center">X</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</body>
+</html>

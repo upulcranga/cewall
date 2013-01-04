@@ -1,0 +1,19 @@
+====================
+version 1.0.2
+====================
+-incompleted backed
+-backend template changed to match with front-end
+-favicon created
+-new sidebar component : staff presence
+-implemented backend for staff presence
+====================
+version 1.0.1
+====================
+- incompleted backend
+- all the components in the front end(v1.0) works with AJAX
+====================
+version 1.0
+====================
+- incompleted backend
+- clock,weather,mini lab component,navigation,notices,news,schedule and memories
+====================
